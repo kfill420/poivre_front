@@ -1,16 +1,17 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { fileURLToPath, URL } from 'node:url'
 
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-  build: {
-    rollupOptions: {
-      external: ['vuex'],  // Ajoutez ici les dépendances externes nécessaires
-    },
-  },
+  base: 'Spiecraft/',
+  plugins: [
+    vue(),
+  ],
   resolve: {
     alias: {
-      '@': '/src',  // Assurez-vous que l'alias est correct pour votre structure de projet
-    },
-  },
-});
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})
