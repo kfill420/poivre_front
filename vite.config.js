@@ -1,7 +1,16 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  base: '/',
-  plugins: [react()],
+  plugins: [vue()],
+  build: {
+    rollupOptions: {
+      external: ['vuex'],  // Ajoutez ici les dépendances externes nécessaires
+    },
+  },
+  resolve: {
+    alias: {
+      '@': '/src',  // Assurez-vous que l'alias est correct pour votre structure de projet
+    },
+  },
 });
